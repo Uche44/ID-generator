@@ -1,0 +1,45 @@
+.hero {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-text-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-left: -4rem;
+  color: #fff;
+  padding-right: 10rem;
+  user-select: none;
+}
+
+.hero-text-wrap h1 {
+  font-size: 3.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+.hero-btn {
+  background-color: #3f1010;
+  margin-top: 0.5rem;
+  color: #fff;
+  padding: 1rem 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.hero-btn:hover {
+  background-color: #fff;
+  color: #000;
+  transition: all 0.3s ease-in-out;
+}
