@@ -1,15 +1,15 @@
 const BackView = ({ signaturePreview }) => {
   return (
     <>
-      <div className="back-header">
+      <div className="header">
         <h3>Sarcastic Geeks Trybe</h3>
-        <p>Authorization Card</p>
+        <p>Membership Card</p>
       </div>
-      <div className="back-content">
+      <div className="back-details">
         <p>This card is property of Sarcastic Geeks Trybe</p>
-        <p>If found, please return to:</p>
-        <p>123 Business Rd, City</p>
-        <div className="signature-container">
+        {/* <p>If found, please return to:</p>
+        <p>123 Business Rd, City</p> */}
+        <div className="signature-container ">
           {signaturePreview && (
             <img
               src={signaturePreview}

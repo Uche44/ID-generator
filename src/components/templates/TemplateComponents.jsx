@@ -12,6 +12,7 @@ export const MinimalTemplate = ({
   email,
   phone,
   group,
+  signaturePreview,
 }) => {
   const { userData } = useUserData();
   const photoUrl = usePhotoUrl(userData.photo);
@@ -27,6 +28,7 @@ export const MinimalTemplate = ({
             className="logo"
           />
           <img
+            className="photo"
             src={photoUrl}
             alt="User"
           />
@@ -47,8 +49,8 @@ export const MinimalTemplate = ({
         </div>
       )}
       {backView && (
-        <div className="id-back">
-          <BackView />
+        <div className="back-view">
+          <BackView signaturePreview={signaturePreview}/>
         </div>
       )}
     </div>
@@ -71,26 +73,90 @@ export const CorporateTemplate = ({
 
   return (
     <div className="template">
-      {/* Front Side */}
-      <div className="">
-        <div className="photo-container">
+      {!backView && (
+        <div className="corporate-template front">
           <img
+            src="/images/logo.png"
+            alt=""
+            className="logo"
+          />
+          <img
+            className="photo"
             src={photoUrl}
             alt="User"
           />
-        </div>
-        <div className="details">
           <h2>{name}</h2>
-          <p>Niche: {techStack}</p>
-          <p>Email: {email}</p>
-          <p>Phone: {phone}</p>
-          <p>Group: {group}</p>
+          <p className="niche">{techStack}</p>
+          <div className="details">
+            <div className="labels">
+              <p>Email: </p>
+              <p>Phone: </p>
+              <p>Group: </p>
+            </div>
+            <div className="info">
+              <p> {email}</p>
+              <p> {phone}</p>
+              <p> {group}</p>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* Back Side */}
+      )}
       {backView && (
-        <div className="id-back">
+        <div className="back-view">
+          <BackView signaturePreview={signaturePreview} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+// template
+
+export const TemplateThree = ({
+  name,
+  // photo,
+  techStack,
+  email,
+  phone,
+  group,
+  signaturePreview,
+}) => {
+  const { userData } = useUserData();
+  const { backView } = useTemplateContext();
+  const photoUrl = usePhotoUrl(userData.photo);
+
+  return (
+    <div className="template">
+      {!backView && (
+        <div className="template-three front">
+          <img
+            src="/images/logo.png"
+            alt=""
+            className="logo"
+          />
+          <img
+            className="photo"
+            src={photoUrl}
+            alt="User"
+          />
+          <h2>{name}</h2>
+          <p className="niche">{techStack}</p>
+          <div className="details">
+            <div className="labels">
+              <p>Email: </p>
+              <p>Phone: </p>
+              <p>Group: </p>
+            </div>
+            <div className="info">
+              <p> {email}</p>
+              <p> {phone}</p>
+              <p> {group}</p>
+            </div>
+          </div>
+        </div>
+      )}
+      {backView && (
+        <div className="back-view">
           <BackView signaturePreview={signaturePreview} />
         </div>
       )}
