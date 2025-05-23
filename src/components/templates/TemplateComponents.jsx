@@ -49,8 +49,8 @@ export const MinimalTemplate = ({
         </div>
       )}
       {backView && (
-        <div className="back-view">
-          <BackView signaturePreview={signaturePreview}/>
+        <div className="m-back-view back-view">
+          <BackView signaturePreview={signaturePreview} />
         </div>
       )}
     </div>
@@ -102,7 +102,7 @@ export const CorporateTemplate = ({
         </div>
       )}
       {backView && (
-        <div className="back-view">
+        <div className="c-back-view back-view">
           <BackView signaturePreview={signaturePreview} />
         </div>
       )}
@@ -156,7 +156,60 @@ export const TemplateThree = ({
         </div>
       )}
       {backView && (
-        <div className="back-view">
+        <div className="three-back-view back-view">
+          <BackView signaturePreview={signaturePreview} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+// fourth template
+export const TemplateFour = ({
+  name,
+  // photo,
+  techStack,
+  email,
+  phone,
+  group,
+  signaturePreview,
+}) => {
+  const { userData } = useUserData();
+  const { backView } = useTemplateContext();
+  const photoUrl = usePhotoUrl(userData.photo);
+
+  return (
+    <div className="template">
+      {!backView && (
+        <div className="template-four front">
+          <img
+            src="/images/logo.png"
+            alt=""
+            className="logo"
+          />
+          <img
+            className="photo"
+            src={photoUrl}
+            alt="User"
+          />
+          <h2>{name}</h2>
+          <p className="niche">{techStack}</p>
+          <div className="details">
+            <div className="labels">
+              <p>Email: </p>
+              <p>Phone: </p>
+              <p>Group: </p>
+            </div>
+            <div className="info">
+              <p> {email}</p>
+              <p> {phone}</p>
+              <p> {group}</p>
+            </div>
+          </div>
+        </div>
+      )}
+      {backView && (
+        <div className="four-back-view back-view">
           <BackView signaturePreview={signaturePreview} />
         </div>
       )}

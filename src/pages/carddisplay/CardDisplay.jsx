@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useUserData } from "../../context/UserContext";
 import templates from "../../lib/templates";
 import { useTemplateContext } from "../../context/TemplateContext";
+import "./card.css";
 
 const CardDisplay = () => {
   const { userData } = useUserData();
@@ -17,8 +18,6 @@ const CardDisplay = () => {
     return <div>Template not found</div>;
   }
 
-  // const displayData = userData;
-
   const TemplateComponent = selectedTemplate?.component;
 
   return (
@@ -26,12 +25,17 @@ const CardDisplay = () => {
       <TemplateComponent {...userData} />
 
       <div className="card-actions">
-        <button onClick={() => window.print()}>Print Card</button>
         <button
           onClick={() => setBackView(!backView)}
-          className="back"
+          className="action-btn"
         >
           {backView ? "See front" : "See back"}
+        </button>
+        <button
+          className="action-btn"
+          onClick={() => window.print()}
+        >
+          Print Card
         </button>
       </div>
     </div>

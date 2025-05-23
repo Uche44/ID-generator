@@ -43,3 +43,51 @@
   color: #000;
   transition: all 0.3s ease-in-out;
 }
+
+/* mobile */
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr; 
+    height: auto;
+  }
+
+  .hero-text-wrap {
+    margin-left: 0;
+    padding: 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-text-wrap h1 {
+    font-size: 2rem;
+  }
+
+  .hero-btn {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}
+
+/* tablet */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr; 
+    height: auto;
+  }
+
+  .hero-text-wrap {
+    margin-left: 0;
+    padding: 3rem 5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-text-wrap h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-btn {
+    font-size: 1rem;
+  }
+}
+

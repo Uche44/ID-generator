@@ -7,8 +7,7 @@ const BackView = ({ signaturePreview }) => {
       </div>
       <div className="back-details">
         <p>This card is property of Sarcastic Geeks Trybe</p>
-        {/* <p>If found, please return to:</p>
-        <p>123 Business Rd, City</p> */}
+    
         <div className="signature-container ">
           {signaturePreview && (
             <img

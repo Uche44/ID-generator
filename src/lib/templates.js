@@ -1,7 +1,7 @@
 import {
   MinimalTemplate,
   CorporateTemplate,
-  TemplateThree,
+  TemplateThree, TemplateFour
 } from "../components/templates/TemplateComponents";
 import { sampleData } from "./sampleData";
 const templates = [
@@ -22,6 +22,13 @@ const templates = [
     id: 3,
     name: "Three",
     component: TemplateThree,
+    previewImage: "/three-preview.jpg",
+    sampleData,
+  },
+  {
+    id: 4,
+    name: "Four",
+    component: TemplateFour,
     previewImage: "/three-preview.jpg",
     sampleData,
   },

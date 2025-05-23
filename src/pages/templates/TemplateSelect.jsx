@@ -66,6 +66,7 @@ import { TemplatePreview } from "../../components/TemplatePreview";
 import { useNavigate } from "react-router-dom";
 import { useTemplateContext } from "../../context/TemplateContext";
 import { useUserData } from "../../context/UserContext";
+import "./templateselect.css";
 
 const TemplateSelect = () => {
   const navigate = useNavigate();

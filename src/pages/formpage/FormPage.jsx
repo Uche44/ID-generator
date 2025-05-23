@@ -86,7 +86,7 @@ const FormPage = () => {
 
   return (
     <div className="form-container">
-      <h2>ID Card Information</h2>
+      <h2>Member Info</h2>
       <form
         onSubmit={handleSubmit}
         className="id-card-form"
@@ -214,8 +214,8 @@ const FormPage = () => {
             onChange={handleChange}
           >
             <option value="">Select your group</option>
-            <option value="Frontend">Regular</option>
-            <option value="Backend">Special</option>
+            <option value="Regular">Regular</option>
+            <option value="Special">Special</option>
             {/* <option value="DevOps">DevOps</option>
             <option value="Design">Design</option>
             <option value="Product">Product</option> */}
