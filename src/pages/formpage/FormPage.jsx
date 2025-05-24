@@ -79,6 +79,7 @@ const FormPage = () => {
     e.preventDefault();
     if (validateForm()) {
       // updating global userData state
+      
       setUserData(userData);
       navigate("/choose-template");
     }
@@ -216,9 +217,7 @@ const FormPage = () => {
             <option value="">Select your group</option>
             <option value="Regular">Regular</option>
             <option value="Special">Special</option>
-            {/* <option value="DevOps">DevOps</option>
-            <option value="Design">Design</option>
-            <option value="Product">Product</option> */}
+          
           </select>
           {errors.group && (
             <span className="error-message">{errors.group}</span>
