@@ -8,7 +8,6 @@ export const usePhotoUrl = (photoFile) => {
       const url = URL.createObjectURL(photoFile);
       setPhotoUrl(url);
 
-      // Cleanup function
       return () => {
         URL.revokeObjectURL(url);
       };

@@ -6,26 +6,26 @@ export const useExportCard = () => {
   const cardRef = useRef(null);
 
   const captureCard = async () => {
-    // Preload all images first
+    // Preload  images 
     const images = cardRef.current.querySelectorAll("img");
     await Promise.all(
       Array.from(images).map((img) => {
         if (img.complete) return Promise.resolve();
         return new Promise((resolve) => {
           img.onload = resolve;
-          img.onerror = resolve; // Continue even if some images fail
+          img.onerror = resolve; 
         });
       })
     );
 
     return await html2canvas(cardRef.current, {
-      scale: 3, // Higher quality
+      scale: 3, 
       useCORS: true,
       allowTaint: true,
       logging: false,
       backgroundColor: null,
       onclone: (clonedDoc) => {
-        // Ensure all styles are preserved in the clone
+       
         clonedDoc.querySelectorAll("*").forEach((el) => {
           el.style.boxSizing = "border-box";
           el.style.overflow = "visible";
@@ -53,7 +53,7 @@ export const useExportCard = () => {
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "mm",
-        format: [85.6, 54], // ID card size
+        // format: [85.6, 54], 
       });
 
       // Calculate aspect ratio
