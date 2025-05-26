@@ -53,8 +53,8 @@ const CardDisplay = () => {
     <div className="card-display">
       <div ref={cardRef}>
         <TemplateComponent
-          {...userData}
           photo={photoUrl}
+          {...userData}
         />
       </div>
 

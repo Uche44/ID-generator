@@ -43,9 +43,9 @@
   border: 4px solid #161750;
 }
 .template h2 {
-  font-size: 1.6rem;
+  /* font-size: 1.6rem; */
   margin-top: 10px;
-  text-overflow: ellipsis;
+  /* width: 100%; */
   overflow: hidden;
   color: #161750;
 }
@@ -151,7 +151,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
- position: relative;
+  position: relative;
   margin: 10px auto;
   display: flex;
   flex-direction: column;
@@ -233,7 +233,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
- position: relative;
+  position: relative;
 
   margin: 10px auto;
   display: flex;
@@ -292,9 +292,7 @@
   }
 
   .template h2 {
-    white-space: nowrap;
-    font-size: 14pt !important;
-    width: 100%;
+
     overflow: visible;
     margin: 1mm 0 !important;
   }

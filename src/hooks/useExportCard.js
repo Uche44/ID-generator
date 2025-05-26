@@ -6,44 +6,32 @@ export const useExportCard = () => {
   const cardRef = useRef(null);
 
   const captureCard = async () => {
-    // Create a hidden clone of the card to preserve original styles
-    const originalCard = cardRef.current;
-    const clone = originalCard.cloneNode(true);
-
-    // Position clone off-screen without modifying styles
-    clone.style.position = "fixed";
-    clone.style.left = "-9999px";
-    clone.style.top = "0";
-    clone.style.zIndex = "9999";
-    clone.style.visibility = "hidden";
-
-    document.body.appendChild(clone);
-
-    // Wait for images to load (including those in the clone)
-    const images = clone.querySelectorAll("img");
+    // Preload all images first
+    const images = cardRef.current.querySelectorAll("img");
     await Promise.all(
-      Array.from(images).map((img) =>
-        img.complete
-          ? Promise.resolve()
-          : new Promise((resolve) => {
-              img.onload = resolve;
-              img.onerror = resolve;
-            })
-      )
+      Array.from(images).map((img) => {
+        if (img.complete) return Promise.resolve();
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve; // Continue even if some images fail
+        });
+      })
     );
 
-    const canvas = await html2canvas(clone, {
-      scale: 2,
+    return await html2canvas(cardRef.current, {
+      scale: 3, // Higher quality
       useCORS: true,
+      allowTaint: true,
       logging: false,
       backgroundColor: null,
-      allowTaint: true,
-      ignoreElements: (el) => el === originalCard,
+      onclone: (clonedDoc) => {
+        // Ensure all styles are preserved in the clone
+        clonedDoc.querySelectorAll("*").forEach((el) => {
+          el.style.boxSizing = "border-box";
+          el.style.overflow = "visible";
+        });
+      },
     });
-
-    // Clean up
-    document.body.removeChild(clone);
-    return canvas;
   };
 
   const downloadAsImage = async () => {
@@ -51,7 +39,7 @@ export const useExportCard = () => {
       const canvas = await captureCard();
       const link = document.createElement("a");
       link.download = "id-card.png";
-      link.href = canvas.toDataURL("image/png");
+      link.href = canvas.toDataURL("image/png", 1.0);
       link.click();
     } catch (error) {
       console.error("Image export failed:", error);
@@ -65,11 +53,15 @@ export const useExportCard = () => {
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "mm",
-        // format: [85.6, 54],
+        format: [85.6, 54], // ID card size
       });
 
-      const imgData = canvas.toDataURL("image/png");
-      pdf.addImage(imgData, "PNG");
+      // Calculate aspect ratio
+      const imgProps = pdf.getImageProperties(canvas);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(canvas, "PNG", 0, 0, pdfWidth, pdfHeight);
       pdf.save("id-card.pdf");
     } catch (error) {
       console.error("PDF export failed:", error);
@@ -86,7 +78,16 @@ export const useExportCard = () => {
         <html>
           <head>
             <title>Print ID Card</title>
-            
+            <style>
+              @page { size: auto; margin: 0 auto; }
+              body { margin: 0 auto;width:100% }
+              img { 
+                width: 50%; 
+                height: 50%;
+                margin:0 auto;
+                object-fit: contain;
+              }
+            </style>
           </head>
           <body>
             <img src="${canvas.toDataURL("image/png")}" />
@@ -94,9 +95,10 @@ export const useExportCard = () => {
         </html>
       `);
       printWindow.document.close();
+      printWindow.focus();
       setTimeout(() => {
         printWindow.print();
-        setTimeout(() => printWindow.close(), 1000);
+        printWindow.close();
       }, 500);
     } catch (error) {
       console.error("Print failed:", error);
