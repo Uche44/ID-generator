@@ -35,16 +35,9 @@ export const MinimalTemplate = ({
           <h2>{name}</h2>
           <p className="niche">{techStack}</p>
           <div className="details">
-            <div className="labels">
-              <p>Email: </p>
-              <p>Phone: </p>
-              <p>Group: </p>
-            </div>
-            <div className="info">
-              <p> {email}</p>
-              <p> {phone}</p>
-              <p> {group}</p>
-            </div>
+            <p>Email: {email}</p>
+            <p>Phone: {phone}</p>
+            <p>Group: {group}</p>
           </div>
         </div>
       )}
@@ -87,17 +80,15 @@ export const CorporateTemplate = ({
           />
           <h2>{name}</h2>
           <p className="niche">{techStack}</p>
+
           <div className="details">
-            <div className="labels">
-              <p>Email: </p>
-              <p>Phone: </p>
-              <p>Group: </p>
-            </div>
-            <div className="info">
-              <p> {email}</p>
-              <p> {phone}</p>
-              <p> {group}</p>
-            </div>
+            <p className="email">
+              {" "}
+              <span className="email">Email: </span>
+              <span className="email2">{email}</span>
+            </p>
+            <p>Phone: {phone}</p>
+            <p>Group: {group}</p>
           </div>
         </div>
       )}
