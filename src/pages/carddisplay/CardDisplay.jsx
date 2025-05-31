@@ -71,14 +71,14 @@ const CardDisplay = () => {
           className="action-btn"
           disabled={isExporting}
         >
-          {isExporting ? "Exporting..." : "Download as Image"}
+          {isExporting ? "Exporting..." : "Download Image"}
         </button>
         <button
           onClick={() => handleExport(downloadAsPDF)}
           className="action-btn"
           disabled={isExporting}
         >
-          {isExporting ? "Exporting..." : "Download as PDF"}
+          {isExporting ? "Exporting..." : "Download PDF"}
         </button>
         <button
           onClick={() => handleExport(printCard)}

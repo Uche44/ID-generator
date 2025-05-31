@@ -41,3 +41,25 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 767px) {
+  .card-display {
+    height: auto;
+    padding: 1.5rem 1rem;
+  }
+
+  .card-actions {
+    width: 100%;
+   display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .action-btn {
+    /* width: 60%; */
+    /* max-width: 300px; */
+    font-size: 1rem;
+    padding: 0.75rem;
+    margin-bottom: 10px;
+  }
+}
